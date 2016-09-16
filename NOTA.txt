@@ -1,0 +1,7 @@
+- Agregar Sitemap
+- Definir bien las formularios y páginas
+- Crear MasterPage
+
+
+// 
+-- Backend - panel del administador

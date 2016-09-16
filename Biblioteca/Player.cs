@@ -21,5 +21,9 @@ namespace Biblioteca
             this.Team = Team;
         }
 
+        public void asignarTeam(Team team)
+        {
+            this.Team = team;
+        }
     }
 }
