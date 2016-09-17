@@ -7,43 +7,43 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="css/uikit.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <asp:ContentPlaceHolder id="head" runat="server">
-
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
     <div class="contenedor">
-        <header>
-            <h3><img src="img/logo.jpg" width="100px"/> Sistema de Ligas - Adminitración</h3>
-        </header>
-        <nav>
 
-           
-            <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
-            
+        <div class="panel-izq">
+            <div class="logo">
+                <img src="img/logo.png" width="90%" /></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Registrate</a></li>
+                    <li><a href="#">Registro de Team</a></li>
+                    <li><a href="#">Inscripción de Liga</a></li>
+                    <li><a href="#">Brackets</a></li>
+                    <li><a href="#">Etc</a></li>
+                    <li><a href="#">Contaco</a></li>
 
+                </ul>
+            </nav>
+        </div>
+        <div class="panel-der">
+            <div class="contenido">
+                contenido
 
-        </nav>
-        <div class="main"></div>
-
-        <footer>
-            <div style="text-align : center;">
-
-                <p>Desarrollado por nosotros 2016</p>
+                        <form id="form1" runat="server">
+                            <div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </form>
             </div>
-        </footer>
+           
+        </div>
 
-
-
-
+         <footer>Desarrollado por nosotros 2016. NancySharp Inc.</footer>
     </div>
-    <!-- hasta aqui uikit -->
-    <div>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
-    </form>
 </body>
 </html>
