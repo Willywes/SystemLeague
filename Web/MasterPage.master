@@ -5,11 +5,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="css/uikit.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <asp:ContentPlaceHolder id="head" runat="server">
+
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
+    <div class="contenedor">
+        <header>
+            <h3><img src="img/logo.jpg" width="100px"/> Sistema de Ligas - Adminitración</h3>
+        </header>
+        <nav>
+
+           
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+            
+
+
+        </nav>
+        <div class="main"></div>
+
+        <footer>
+            <div style="text-align : center;">
+
+                <p>Desarrollado por nosotros 2016</p>
+            </div>
+        </footer>
+
+
+
+
+    </div>
+    <!-- hasta aqui uikit -->
     <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         

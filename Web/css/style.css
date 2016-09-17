@@ -1,0 +1,9 @@
+﻿body {
+    background: #c5c5c5;
+}
+.contenedor {
+    margin : 0px;
+    width : 100%;
+    min-width : 800px;
+    background : #ffffff;
+}
