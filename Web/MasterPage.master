@@ -4,46 +4,66 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="css/uikit.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Liga - League of Legends</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div class="contenedor">
 
-        <div class="panel-izq">
-            <div class="logo">
-                <img src="img/logo.png" width="90%" /></div>
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Registrate</a></li>
-                    <li><a href="#">Registro de Team</a></li>
-                    <li><a href="#">Inscripción de Liga</a></li>
-                    <li><a href="#">Brackets</a></li>
-                    <li><a href="#">Etc</a></li>
-                    <li><a href="#">Contaco</a></li>
 
-                </ul>
-            </nav>
-        </div>
-        <div class="panel-der">
-            <div class="contenido">
-                contenido
+    <form id="form1" runat="server">
 
-                        <form id="form1" runat="server">
-                            <div>
-                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                </asp:ContentPlaceHolder>
-                            </div>
-                        </form>
+        <div class="container">
+            <div class="left-panel">
+
+                <div class="logo">
+                    <a href="/Inicio.aspx">
+                        <img src="/img/logo.png" width="100%" /></a>
+                    <hr />
+
+                </div>
+                
+                <nav>
+                    <ul>
+                        
+
+                        <li><a href="/Inicio.aspx">Inicio</a></li>
+                        <li><a href="/User/Login.aspx">Iniciar Sessión</a></li>
+                        <li><a href="/User/Registro.aspx">Registrate</a></li>
+                        <hr />
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Brackets</a></li>
+                        <li><a href="#">Estadísticas</a></li>
+                        <hr />
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <hr />
+                        <li><a href="/Admin/Main.aspx">Zona Admin</a></li>
+                    </ul>
+                </nav>
+                <div style="text-align: center;">
+                    <hr />
+                    <img src="/img/facebook.png" width="40" />
+                    <img src="/img/twitter.png" width="40" />
+                    <img src="/img/youtube.png" width="40" />
+                    <img src="/img/instagram.png" width="40" />
+               
+
+                </div>
             </div>
-           
-        </div>
+            <div class="right-panel">
 
-         <footer>Desarrollado por nosotros 2016. NancySharp Inc.</footer>
-    </div>
+
+                <div class="main-output">
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </form>
 </body>
 </html>

@@ -1,66 +1,169 @@
-﻿body, html {
-    background: #151b27;
-    color :#f5f5f5;
+html {
+       overflow-y: scroll;
+       height:100%;
+}
+body{
+	margin : 0px;
+	background: #151b27;
+	color : #d0d0d0;
+	width: 100%;
+	height:100%;
+	font-family: Sans-serif;
+    font-weight :300;
+    font-size : 15px;
+}
+h1, h2, h3, h4, h5{
+
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+}
+
+hr {  
+ 	border : 1px solid #28303f;
+}
+.container{
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	bottom: 20px;
+	border:none;
+	/* display: block; */
+}
+.home-panel{
+    background : #181818;
+    width : 100%;
     height : 100%;
 }
-.contenedor {
-    margin : 0px auto;
-    width : 100%;
-    height: 100%;
-    min-width : 800px;   
+.left-panel{
+	width : 230px;
+	float: left;
+	height: 100%;
+	background: #1c222b;
+	margin : 0px;
+    padding : 10px;
 }
+.right-panel{
+	/*width : 100%;*/
+	/* height: 100%; */
+	margin : 0px;
+	/* padding-right: 275px; */
+	padding: 25px;
+	margin-left: 250px;
 
-nav {
-    margin-top : 20px;
+	/* float: left; */
 }
-.panel-izq {
-    width: 250px;
-    min-width: 250px;
-    max-width: 250px;
-    background-color: #1c222b;
-    display : inline-block;
-    padding : 15px;
-    height:100%;
-    border-right : 1px solid #1b1b1b;
-}
-.panel-der{
-    display : inline-block;
-    padding : 15px;
-}
-.contenido {
-    margin: 0;
-}
-footer {
-    
-    text-align : center;
-    bottom : 0;
-    height : 40px;
-    
-    background : black;
-    float:right;
-    width :100%;
-  }
-
-nav ul {
+a:link{
     text-decoration : none;
-    list-style : none;
-    margin-left: -30px;
-    
+    font-size : 13px;
 }
-nav ul li {
 
-    padding : 15px 25px;
-
+.button,
+input[type="button" i], 
+input[type="submit" i], 
+input[type="reset" i], 
+input[type="file" i]::-webkit-file-upload-button, 
+button{
+	background: #3b5998;
+	color : #c5c5c5;
+	border: 0px;
+	padding : 10px 20px;
+	border-radius : 5px;
+    cursor :pointer;
 }
-nav ul li:hover{
-    background : #151b27;
-    border-radius : 5px;
 
+input:not([type]), 
+input[type="email" i], 
+input[type="number" i], 
+input[type="password" i], 
+input[type="tel" i], 
+input[type="url" i], 
+input[type="text" i] {
+    padding: 8px 5px;
+    border:0px solid #242424;
+    /* border-radius: 5px;*/
+    color : #d0d0d0;
+    background : #28303f;
+    /*margin-bottom: 8px;*/
+}
+input:focus {
+	outline: none;
+	color : #d0d0d0;
+}
 
+.lbl-form {
+    width : 150px;
+}
+
+.top-login{
+	width: 100%;
+	text-align : right;
+}
+.panel {
+    padding: 25px;
+    background: #222938;
+    float: left;
+    margin-right : 25px;
+}
+
+.panel h2 {
+	margin: -25px;
+	margin-bottom: 20px;
+	background: #3b5998;
+	padding: 10px 15px;
+}
+
+.msj-output{
+    background: #c5c5c5;
+    color : red;
+    padding: 6px;
+    /* margin-bottom: 15PX; */
+    line-height: 42px;
+}
+.validation{
+    padding-top: 53px;
+    margin-left: 25px;
+    /*float: left;*/
+}
+
+ul{
+	list-style: none;
+	-webkit-padding-start: 0px;
 }
 nav ul li a{
+	color : #7e838c;
+	padding : 10px 15px;
+	width : 100px;
+	line-height :40px;
+	font-size : 12px;
+	margin-left : -10px;
+	border-left : 5px solid transparent;
+}
 
+
+nav ul li a:hover {
+	border-left : 5px solid #28303f;
+	color : #FFFFFF;
+}
+nav ul li a:link{
     text-decoration : none;
+    font-size : 15px;
+}
 
+.panel-none{
+    float : left;
+    margin : 0;
+}
 
+/*tablesss*/
+
+table,tr,th,td {
+    border : 0px;
+}
+th{
+    background : #0858bf;
+}
+td,th{
+    padding : 5px 5px;
+    border : 0px solid transparent;
 }
