@@ -10,7 +10,6 @@ namespace Biblioteca.Negocio
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int IdLiga { get; set; }
 
         public Torneo()
         {
@@ -21,7 +20,7 @@ namespace Biblioteca.Negocio
         {
             Id = 0;
             Nombre = string.Empty;
-            IdLiga = 0;
+
         }
 
         //crud
@@ -33,7 +32,6 @@ namespace Biblioteca.Negocio
                 DALC.Torneo torneo = new DALC.Torneo();
                 torneo.Id = Id;
                 torneo.Nombre = Nombre;
-                torneo.IdLiga = IdLiga;
                 CommonBC.SystemLeagueEntities.Torneo.Add(torneo);
                 CommonBC.SystemLeagueEntities.SaveChanges();
                 return true;
@@ -51,7 +49,6 @@ namespace Biblioteca.Negocio
                 DALC.Torneo torneo = CommonBC.SystemLeagueEntities.Torneo.First(t => t.Id == Id);
                 Id = torneo.Id;
                 Nombre = torneo.Nombre;
-                IdLiga = torneo.IdLiga;
                 CommonBC.SystemLeagueEntities.Torneo.Add(torneo);
                 return true;
             }
@@ -68,7 +65,6 @@ namespace Biblioteca.Negocio
             {
                 DALC.Torneo torneo = CommonBC.SystemLeagueEntities.Torneo.First(t => t.Id == Id);
                 torneo.Nombre = Nombre;
-                torneo.IdLiga = IdLiga;
                 CommonBC.SystemLeagueEntities.SaveChanges();
                 return true;
             }

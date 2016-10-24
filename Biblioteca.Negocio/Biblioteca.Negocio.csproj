@@ -50,11 +50,14 @@
     <Compile Include="AdminColeccion.cs" />
     <Compile Include="CommonBC.cs" />
     <Compile Include="Liga.cs" />
+    <Compile Include="LigaColeccion.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerColeccion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="TeamColeccion.cs" />
     <Compile Include="Torneo.cs" />
+    <Compile Include="TorneoColeccion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -62,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Biblioteca.DALC\Biblioteca.DALC.csproj">
-      <Project>{53ad471f-8fc6-470f-81e5-d07b3fa4c579}</Project>
+      <Project>{f67c247f-a313-45cd-82fe-25860659c30e}</Project>
       <Name>Biblioteca.DALC</Name>
     </ProjectReference>
   </ItemGroup>

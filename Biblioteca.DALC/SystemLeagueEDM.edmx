@@ -21,7 +21,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IdTeam" Type="int" Nullable="false" />
+          <Property Name="IdTorneo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -32,6 +32,7 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Pass" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="IdTeam" Type="int" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -39,7 +40,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IdPlayer" Type="int" Nullable="false" />
+          <Property Name="IdLiga" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Torneo">
           <Key>
@@ -47,40 +48,39 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IdLiga" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Liga_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+        <Association Name="FK_Liga_Torneo">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
           <End Role="Liga" Type="Self.Liga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liga">
+              <PropertyRef Name="IdTorneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Player_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Team">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Liga">
+            <Dependent Role="Player">
               <PropertyRef Name="IdTeam" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Team_Player">
-          <End Role="Player" Type="Self.Player" Multiplicity="1" />
-          <End Role="Team" Type="Self.Team" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Player">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Team">
-              <PropertyRef Name="IdPlayer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Torneo_Liga">
+        <Association Name="FK_Team_Liga">
           <End Role="Liga" Type="Self.Liga" Multiplicity="1" />
-          <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Liga">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Torneo">
+            <Dependent Role="Team">
               <PropertyRef Name="IdLiga" />
             </Dependent>
           </ReferentialConstraint>
@@ -91,17 +91,17 @@
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Liga_Team" Association="Self.FK_Liga_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Liga" EntitySet="Liga" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Team_Player" Association="Self.FK_Team_Player">
-            <End Role="Player" EntitySet="Player" />
-            <End Role="Team" EntitySet="Team" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Torneo_Liga" Association="Self.FK_Torneo_Liga">
-            <End Role="Liga" EntitySet="Liga" />
+          <AssociationSet Name="FK_Liga_Torneo" Association="Self.FK_Liga_Torneo">
             <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="Liga" EntitySet="Liga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Team" Association="Self.FK_Player_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Liga" Association="Self.FK_Team_Liga">
+            <End Role="Liga" EntitySet="Liga" />
+            <End Role="Team" EntitySet="Team" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -125,9 +125,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdTeam" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Liga_Team" FromRole="Liga" ToRole="Team" />
-          <NavigationProperty Name="Torneo" Relationship="Self.FK_Torneo_Liga" FromRole="Liga" ToRole="Torneo" />
+          <Property Name="IdTorneo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Torneo" Relationship="Self.FK_Liga_Torneo" FromRole="Liga" ToRole="Torneo" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Team_Liga" FromRole="Liga" ToRole="Team" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -138,7 +138,8 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Team_Player" FromRole="Player" ToRole="Team" />
+          <Property Name="IdTeam" Type="Int32" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Player_Team" FromRole="Player" ToRole="Team" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -146,9 +147,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdPlayer" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Liga" Relationship="Self.FK_Liga_Team" FromRole="Team" ToRole="Liga" />
-          <NavigationProperty Name="Player" Relationship="Self.FK_Team_Player" FromRole="Team" ToRole="Player" />
+          <Property Name="IdLiga" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Liga" Relationship="Self.FK_Team_Liga" FromRole="Team" ToRole="Liga" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Player_Team" FromRole="Team" ToRole="Player" />
         </EntityType>
         <EntityType Name="Torneo">
           <Key>
@@ -156,42 +157,41 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdLiga" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Liga" Relationship="Self.FK_Torneo_Liga" FromRole="Torneo" ToRole="Liga" />
+          <NavigationProperty Name="Liga" Relationship="Self.FK_Liga_Torneo" FromRole="Torneo" ToRole="Liga" />
         </EntityType>
-        <Association Name="FK_Liga_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+        <Association Name="FK_Liga_Torneo">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
           <End Role="Liga" Type="Self.Liga" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Team">
+            <Principal Role="Torneo">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Liga">
-              <PropertyRef Name="IdTeam" />
+              <PropertyRef Name="IdTorneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Torneo_Liga">
+        <Association Name="FK_Team_Liga">
           <End Role="Liga" Type="Self.Liga" Multiplicity="1" />
-          <End Role="Torneo" Type="Self.Torneo" Multiplicity="*" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Liga">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Torneo">
+            <Dependent Role="Team">
               <PropertyRef Name="IdLiga" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Team_Player">
-          <End Role="Player" Type="Self.Player" Multiplicity="1" />
-          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+        <Association Name="FK_Player_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Player">
+            <Principal Role="Team">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Team">
-              <PropertyRef Name="IdPlayer" />
+            <Dependent Role="Player">
+              <PropertyRef Name="IdTeam" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -201,17 +201,17 @@
           <EntitySet Name="Player" EntityType="Self.Player" />
           <EntitySet Name="Team" EntityType="Self.Team" />
           <EntitySet Name="Torneo" EntityType="Self.Torneo" />
-          <AssociationSet Name="FK_Liga_Team" Association="Self.FK_Liga_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Liga" EntitySet="Liga" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Torneo_Liga" Association="Self.FK_Torneo_Liga">
-            <End Role="Liga" EntitySet="Liga" />
+          <AssociationSet Name="FK_Liga_Torneo" Association="Self.FK_Liga_Torneo">
             <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="Liga" EntitySet="Liga" />
           </AssociationSet>
-          <AssociationSet Name="FK_Team_Player" Association="Self.FK_Team_Player">
-            <End Role="Player" EntitySet="Player" />
+          <AssociationSet Name="FK_Team_Liga" Association="Self.FK_Team_Liga">
+            <End Role="Liga" EntitySet="Liga" />
             <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Team" Association="Self.FK_Player_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Player" EntitySet="Player" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -236,7 +236,7 @@
               <MappingFragment StoreEntitySet="Liga">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
+                <ScalarProperty Name="IdTorneo" ColumnName="IdTorneo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -248,6 +248,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -256,7 +257,7 @@
               <MappingFragment StoreEntitySet="Team">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
+                <ScalarProperty Name="IdLiga" ColumnName="IdLiga" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -265,7 +266,6 @@
               <MappingFragment StoreEntitySet="Torneo">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdLiga" ColumnName="IdLiga" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -286,7 +286,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
