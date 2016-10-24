@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Negocio
 {
-    class AdminColeccion
+    public class AdminColeccion
     {
     }
 }
