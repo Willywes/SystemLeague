@@ -51,6 +51,7 @@
     <Compile Include="CommonBC.cs" />
     <Compile Include="Liga.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerColeccion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="Torneo.cs" />
