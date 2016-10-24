@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3b6bc267fed64ae183074344c06dff83" Name="Diagram1">
+      <Diagram DiagramId="98a31c27e7e542e9af969b33c85dd728" Name="Diagram1">
         <EntityTypeShape EntityType="SystemLeagueModel.Admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SystemLeagueModel.Liga" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SystemLeagueModel.Player" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SystemLeagueModel.Team" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SystemLeagueModel.Torneo" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="SystemLeagueModel.FK_Liga_Team" ManuallyRouted="false" />
-        <AssociationConnector Association="SystemLeagueModel.FK_Torneo_Liga" ManuallyRouted="false" />
-        <AssociationConnector Association="SystemLeagueModel.FK_Team_Player" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SystemLeagueModel.Liga" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SystemLeagueModel.Player" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SystemLeagueModel.Team" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SystemLeagueModel.Torneo" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="SystemLeagueModel.FK_Liga_Torneo" ManuallyRouted="false" />
+        <AssociationConnector Association="SystemLeagueModel.FK_Team_Liga" ManuallyRouted="false" />
+        <AssociationConnector Association="SystemLeagueModel.FK_Player_Team" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

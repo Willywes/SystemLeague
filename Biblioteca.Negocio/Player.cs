@@ -13,6 +13,7 @@ namespace Biblioteca.Negocio
         public string Email { get; set; }
         public string Pass { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public int IdTeam { get; set; }
 
         public Player()
         {
@@ -26,6 +27,7 @@ namespace Biblioteca.Negocio
             Email = string.Empty;
             Pass = string.Empty;
             FechaRegistro = DateTime.Now;
+            IdTeam = 0;
         }
 
         //crud
@@ -41,6 +43,7 @@ namespace Biblioteca.Negocio
                 p.Email = Email;
                 p.Pass = Pass;
                 p.FechaRegistro = FechaRegistro;
+                p.IdTeam = IdTeam;
 
                 CommonBC.SystemLeagueEntities.Player.Add(p);
                 CommonBC.SystemLeagueEntities.SaveChanges();
@@ -64,6 +67,7 @@ namespace Biblioteca.Negocio
                 Email = p.Email;
                 Pass = p.Pass;
                 FechaRegistro = p.FechaRegistro;
+                IdTeam = p.IdTeam;
 
                 return true;
             }
@@ -82,6 +86,7 @@ namespace Biblioteca.Negocio
                 Nick = p.Nick;
                 Email = p.Email;
                 Pass = p.Pass;
+                IdTeam = p.IdTeam;
 
                 CommonBC.SystemLeagueEntities.SaveChanges();
 
