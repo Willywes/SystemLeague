@@ -19,7 +19,7 @@ namespace Biblioteca.Negocio
                 admin1.Nick = item.Nick;
                 admin1.FechaRegistro = item.FechaRegistro;
                 admin1.Email = item.Email;
-                
+
 
                 admin.Add(admin1);
             }
@@ -32,4 +32,5 @@ namespace Biblioteca.Negocio
             return GenerarLista(admin.ToList());
         }
 
+    }
 }

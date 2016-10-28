@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Biblioteca;
+using Biblioteca.Negocio;
 public partial class Inicio : System.Web.UI.Page
 {
-    private Jugador Jugador
+    private Player Jugador
     {
         get
         {
-            return (Jugador)Session["JugadorSession"];
+            return (Player)Session["JugadorSession"];
         }
 
     }
@@ -36,7 +36,7 @@ public partial class Inicio : System.Web.UI.Page
         {
             pnlUser.Visible = true;
             pnlLogin.Visible = false;
-            lblUser.Text = string.Format("Bienvenido, {0}  ", Jugador.Nickname);
+            lblUser.Text = string.Format("Bienvenido, {0}  ", Jugador.Nick);
 
         }
         if (Jugador == null)

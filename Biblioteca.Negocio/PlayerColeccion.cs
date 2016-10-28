@@ -44,11 +44,20 @@ namespace Biblioteca.Negocio
         }
         public void ComprobarLimiteTeam(int id_Team)
         {
-            if (CantidadJugadoresPorTeam(int id_Team) == 7)
+            if (CantidadJugadoresPorTeam(id_Team) == 7)
             {
                 throw new ArgumentException("Capacidad máxima del team completa.");
             }
         }
+        public bool ComprobarNick(string nick)
+        {
+            var player = CommonBC.SystemLeagueEntities.Player.First(f => f.Nick.Equals(nick));
+            if (player.Nick.Equals(nick))
+            {
+                return true;
+            }
+            return false;
+        }
     }
-}
+
 }
