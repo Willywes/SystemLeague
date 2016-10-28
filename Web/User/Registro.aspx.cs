@@ -6,28 +6,31 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Biblioteca;
 using System.Threading;
+using Biblioteca.Negocio;
 
 public partial class User_Registro : System.Web.UI.Page
 {
-    
 
-    private Jugador Jugador
+    PlayerColeccion playerColeccion = new PlayerColeccion();
+
+
+    private Player Jugador
     {
         get
         {
-            return (Jugador)Session["JugadorSession"];
+            return (Player)Session["JugadorSession"];
         }
 
     }
-    private ListaJugador ListaJugador
+    private PlayerColeccion ListaJugador
     {
         get
         {
             if (Session["ListaJugadorSession"] == null)
             {
-                Session["ListaJugadorSession"] = new ListaJugador();
+                Session["ListaJugadorSession"] = new PlayerColeccion();
             }
-            return (ListaJugador)Session["ListaJugadorSession"];
+            return (PlayerColeccion)Session["ListaJugadorSession"];
         }
         set
         {
@@ -43,34 +46,43 @@ public partial class User_Registro : System.Web.UI.Page
     }
     private int generarId(DateTime time)
     {
-        int c = ListaJugador.count++;
-        return int.Parse(c + time.ToString("HHmmss"));
+        //int c = ListaJugador.count++;
+        return int.Parse(time.ToString("HHmmss"));
     }
 
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {
         try
         {
-            if (ListaJugador != null)
+            if (playerColeccion != null)
             {
-                if (ListaJugador.ComprobarNick(ListaJugador, txtUsuario.Text))
+                if (playerColeccion.ComprobarNick(txtUsuario.Text))
                 {
                     throw new ArgumentException("El Nombre de usuario ya existe\nIntente con otro diferente");
                 }
             }
-            Jugador j = new Jugador();
 
-            j.FechaRegistro = DateTime.Now;
-            j.Id = generarId(j.FechaRegistro);
-            j.Nickname = txtUsuario.Text;
-            j.Contrasena = txtPass.Text;
-            j.Mail = txtMail.Text;
-            j.FechaRegistro = DateTime.Now;
+            if (!txtPass.Text.Equals(txtPass2.Text))
+            {
+                throw new ArgumentException("Las contraseñas no coinciden");
+            }
 
+            if (!txtMail.Text.Equals(txtMail2.Text))
+            {
+                throw new ArgumentException("Las mail no coinciden");
+            }
 
-            ListaJugador.Add(j);
+            Player player = new Player();            
 
-            lblOuput.Text = string.Format("Jugador {0}, registrado con éxito", j.Nickname);
+            player.FechaRegistro = DateTime.Now;
+            player.Id = generarId(player.FechaRegistro);
+            player.Nick = txtUsuario.Text;
+            player.Pass = txtPass.Text;
+            player.Email = txtMail.Text;
+
+            player.Create();
+
+            lblOuput.Text = string.Format("Jugador {0}, registrado con éxito", player.Nick);
             Response.Redirect("/Inicio.aspx");
         }
         catch (Exception ex)

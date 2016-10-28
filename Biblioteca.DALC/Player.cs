@@ -19,7 +19,7 @@ namespace Biblioteca.DALC
         public string Email { get; set; }
         public string Pass { get; set; }
         public System.DateTime FechaRegistro { get; set; }
-        public Nullable<int> IdTeam { get; set; }
+        public int IdTeam { get; set; }
     
         public virtual Team Team { get; set; }
     }

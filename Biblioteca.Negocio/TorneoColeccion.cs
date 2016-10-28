@@ -17,7 +17,6 @@ namespace Biblioteca.Negocio
                 Negocio.Torneo torneo1 = new Torneo();
                 torneo1.Id = item.Id;
                 torneo1.Nombre = item.Nombre;
-                torneo1.IdLiga = item.IdLiga;
 
                 torneo.Add(torneo1);
             }
